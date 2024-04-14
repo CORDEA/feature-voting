@@ -1,0 +1,6 @@
+{
+  "name": "feature-voting",
+  "devDependencies": {
+    "wrangler": "^3.50.0"
+  }
+}
