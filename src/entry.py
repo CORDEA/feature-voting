@@ -54,20 +54,20 @@ async def on_vote(env, pid):
 async def on_fetch(request, env):
     method = request.method
     path = urlparse(request.url).path
-    if method == "GET":
-        if path == "/posts":
+    if method == 'GET':
+        if path == '/posts':
             return on_get_posts(env)
-        r = re.fullmatch(r"/posts/(\d+)", path)
+        r = re.fullmatch(r'/posts/(\d+)', path)
         if r is not None:
             return on_get_post(env, r.group(1))
-    if method == "POST":
-        if path == "/posts":
+    if method == 'POST':
+        if path == '/posts':
             try:
                 body = await request.json()
             except JsException:
                 body = {}
             return on_post_new(env, body)
-        r = re.fullmatch(r"/posts/(\d+)/vote", path)
+        r = re.fullmatch(r'/posts/(\d+)/vote', path)
         if r is not None:
             return on_vote(env, r.group(1))
     return Response.json({}, status=404)
